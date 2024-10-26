@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struts-config>
+    <!-- Define the form bean -->
+    <form-bean name="registrationForm" type="com.example.RegistrationForm"/>
+
+    <!-- Define the action mapping -->
+    <action path="/register" 
+            type="com.example.RegistrationAction" 
+            name="registrationForm" 
+            scope="request" 
+            validate="true">
+        <forward name="success" path="/success.jsp"/>
+        <forward name="failure" path="/register.jsp"/>
+    </action>
+
+    <!-- Define the action for displaying the registration form -->
+    <action path="/showRegisterForm" type="org.apache.struts.action.Action" 
+            scope="request">
+        <forward name="success" path="/register.jsp"/>
+    </action>
+
+    <!-- Configure form validation -->
+    <validator>
+        <form name="registrationForm">
+            <field name="name" depends="required"/>
+            <field name="dateOfBirth" depends="required"/>
+            <field name="password" depends="required"/>
+            <field name="confirmPassword" depends="required"/>
+            <field name="address" depends="required"/>
+        </form>
+    </validator>
+</struts-config>
